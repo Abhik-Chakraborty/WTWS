@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML to HTML Transformation</title>
+</head>
+<body>
+    <h1>Books in the library (HTML format)</h1>
+    <div id="test-html"></div>
+
+    <script>
+        fetch('test.xslt')
+            .then(response => response.text())
+            .then(xslt => {
+                var xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(new DOMParser().parseFromString(xslt, 'text/xml'));
+
+                fetch('test.xml')
+                    .then(response => response.text())
+                    .then(xml => {
+                        var resultDocument = xsltProcessor.transformToFragment(new DOMParser().parseFromString(xml, 'text/xml'), document);
+                        document.getElementById('test-html').appendChild(resultDocument);
+                    })
+                    .catch(error => console.error('Error fetching XML:', error));
+            })
+            .catch(error => console.error('Error fetching XSLT:', error));
+    </script>
+</body>
+</html>
