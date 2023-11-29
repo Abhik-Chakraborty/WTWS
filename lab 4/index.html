@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Factorial Calculator</h1>
+
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" placeholder="Enter a number" required>
+
+    <button onclick="calculateFactorial()">Calculate Factorial</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateFactorial() {
+            // Get the user-entered number
+            var number = document.getElementById("number").value;
+
+            // Validate if the input is a positive integer
+            if (Number.isInteger(+number) && +number >= 0) {
+                var result = factorial(+number);
+                document.getElementById("result").innerText = `Factorial of ${number} is: ${result}`;
+            } else {
+                document.getElementById("result").innerText = "Please enter a valid positive integer.";
+            }
+        }
+
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            } else {
+                return n * factorial(n - 1);
+            }
+        }
+    </script>
+</body>
+</html>
