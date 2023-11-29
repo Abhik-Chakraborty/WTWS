@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    
+</head>
+<body>
+    <div class="container">
+        <nav class="nav nav-toggle">
+            <ul>
+                <li><a class="nav-link" href="#home">Home</a></li>
+                <li><a class="nav-link" href="login.html">Login</a></li>
+                <li><a class="nav-link" href="register.html">Register</a></li>
+            </ul>
+        </nav>
+        <!-- <div class="nav-toggle">
+            <button class="btn btn-secondary" type="button">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div> -->
+        <div id="home" class="content">
+            <h1>Welcome to my website!</h1>
+            <p>This is the home page.</p>
+        </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.nav-toggle').on('click', function () {
+                $('nav ul').slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>
