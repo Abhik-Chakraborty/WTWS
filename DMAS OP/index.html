@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arithmetic Operations</h1>
+
+    <label for="numbers">Enter numbers (comma-separated):</label>
+    <input type="text" id="numbers" placeholder="e.g., 5, 10, 15" required>
+
+    <br>
+
+    <label for="operation">Choose operation:</label>
+    <select id="operation">
+        <option value="add">Add</option>
+        <option value="subtract">Subtract</option>
+        <option value="multiply">Multiply</option>
+        <option value="divide">Divide</option>
+    </select>
+
+    <br>
+
+    <button onclick="performOperation()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script>
+        function performOperation() {
+            var numbersInput = document.getElementById("numbers").value;
+            var operation = document.getElementById("operation").value;
+
+            // Split the entered numbers by comma and convert them to an array of numbers
+            var numbersArray = numbersInput.split(',').map(Number);
+
+            // Check if all entered values are valid numbers
+            if (numbersArray.some(isNaN)) {
+                displayResult("Please enter valid numbers.");
+                return;
+            }
+
+            var result;
+
+            // Perform the selected operation
+            switch (operation) {
+                case "add":
+                    result = numbersArray.reduce((a, b) => a + b, 0);
+                    break;
+                case "subtract":
+                    result = numbersArray.reduce((a, b) => a - b);
+                    break;
+                case "multiply":
+                    result = numbersArray.reduce((a, b) => a * b, 1);
+                    break;
+                case "divide":
+                    result = numbersArray.reduce((a, b) => a / b);
+                    break;
+                default:
+                    displayResult("Invalid operation selected.");
+                    return;
+            }
+
+            // Display the result
+            displayResult("Result: " + result);
+        }
+
+        function displayResult(message) {
+            document.getElementById("result").innerText = message;
+        }
+    </script>
+</body>
+</html>
